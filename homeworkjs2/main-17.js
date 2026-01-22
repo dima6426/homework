@@ -24,7 +24,7 @@ const age = 21;
 
 // console.log(`Скидка составляет ${discount}%`);
 
-switch(age){
+switch(true){
     case age < 18:
         console.log("Скидка составляет 10%");
         break;
