@@ -94,7 +94,6 @@ const weight = +prompt("Введите вес посылки в килограм
 const deliveryType = prompt("Введите тип доставки (Стандарт, Экспресс, Премиум):");
 if (weight <= 0 || isNaN(weight)){
     alert("Некорректный вес посылки");
-    return
 }
 
 if(deliveryType !== "Стандарт" && deliveryType !== "Экспресс" && deliveryType !== "Премиум"){
