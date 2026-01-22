@@ -98,7 +98,6 @@ if (weight <= 0 || isNaN(weight)){
 
 if(deliveryType !== "Стандарт" && deliveryType !== "Экспресс" && deliveryType !== "Премиум"){
     alert("Неверный тип доставки");
-    return
 }
 
 let baseCost = (weight < 1) ? 5 : (weight < 1 || weight <= 5) ? 10 : 15;
