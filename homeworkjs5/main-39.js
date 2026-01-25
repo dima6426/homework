@@ -74,3 +74,16 @@ function callAllMethods(obj) {
         }
     }
 }
+
+const myObject = {
+  method1() {
+    console.log('Метод 1 вызван');
+  },
+  method2() {
+    console.log('Метод 2 вызван');
+  },
+  property: 'Это не метод'
+};
+
+// 3. Вызываем функцию
+callAllMethods(myObject);
