@@ -4,7 +4,6 @@
   color: var(--main-color);
   scroll-behavior: smooth;
   scroll-padding-top: 98px;
-  scrollbar-gutter: stable;
 }
 
 .page__body {
@@ -26,8 +25,7 @@ img {
 }
 
 a:focus-visible,
-button:focus-visible,
-input:focus {
+button:focus-visible {
   outline: 1px solid var(--accent-color);
   outline-offset: 2px;
 }
@@ -68,8 +66,6 @@ input:focus {
 .title-xs {
   font-size: 18px;
 }
-
-
 
 @media (width > 576px) {
   .section {

@@ -42,10 +42,6 @@
   box-shadow: 0 0 20px var(--shadow-color);
 }
 
-.modal--open .modal__window {
-  display: inline-block; 
-}
-
 @media (width > 576px) {
   .modal__window {
     padding: 100px 50px;

@@ -1,4 +1,4 @@
-export const initProductSlider = () => {
+export const productSlider = () => {
   new Swiper(".product__slider", {
     slidesPerView: "auto",
     centeredSlides: true,
@@ -11,4 +11,4 @@ export const initProductSlider = () => {
       nextEl: ".product__slider-button--next",
     },
   });
-}
+};

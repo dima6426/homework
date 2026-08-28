@@ -1,46 +1,72 @@
+
 export function initBurger() {
-    const burger = document.querySelector('.burger');
-    const menu = document.querySelector('#header__menu');
-    const BURGER_OPEN = 'burger--open';
-    const HEADER_MENU_OPEN = 'header__menu--open';
-    const PAGE_BODY_NO_SCROLL = 'page__body--no-scroll';
+
+    const burgerConfig = {
+        BURGER: ".burger",
+        BURGER_OPEN: "burger--open",
+        HEADER_MENU: ".header__menu",
+        HEADER_MENU_OPEN: "header__menu--open",
+        lABEL: {
+            OPEN: "Открыть меню",
+            CLOSE: "Закрыть меню",
+        },
+        PAGE_BODY: ".page__body",
+        PAGE_BODY_NO_SCROLL: "page__body--no-scroll",
+        MENU_LINK: ".menu__link",
+        BREAKPOINT: 768,
+        MAIN: "main",
+    };
+    const burger = document.querySelector(burgerConfig.BURGER);
+    const menu = document.querySelector(burgerConfig.HEADER_MENU);
+    const link = document.querySelector(burgerConfig.MENU_LINK)
+    const page_body = document.querySelector(burgerConfig.PAGE_BODY);
 
 
-    const openMenu = () => {
-        burger.classList.add(BURGER_OPEN)
-        menu.classList.add(HEADER_MENU_OPEN)
-        document.body.classList.add(PAGE_BODY_NO_SCROLL)
+
+    const openBurgerMenu = () => {
+        burger.classList.add(burgerConfig.BURGER_OPEN);
+        menu.classList.add(burgerConfig.HEADER_MENU_OPEN);
+        page_body.classList.add(burgerConfig.PAGE_BODY_NO_SCROLL);
         burger.setAttribute('aria-expanded', 'true');
-    }
+        burger.setAttribute('aria-label', burgerConfig.lABEL.CLOSE);
+    };
 
-    const closeMenu = () => {
-        burger.classList.remove(BURGER_OPEN)
-        menu.classList.remove(HEADER_MENU_OPEN)
-        document.body.classList.remove(PAGE_BODY_NO_SCROLL)
+    const closeBurgerMenu = () => {
+        burger.classList.remove(burgerConfig.BURGER_OPEN);
+        menu.classList.remove(burgerConfig.HEADER_MENU_OPEN);
+        page_body.classList.remove(burgerConfig.PAGE_BODY_NO_SCROLL);
         burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', burgerConfig.lABEL.OPEN);
+    };
+
+
+    const toggleBurger = () => {
+        const burgerOpen = burger.classList.contains(burgerConfig.BURGER_OPEN)
+        if (burgerOpen) {
+            closeBurgerMenu()
+        } else {
+            openBurgerMenu()
+        }
     }
 
-    const isMenuOpen = () => burger.classList.contains(BURGER_OPEN);
-
-    burger.addEventListener("click", () => isMenuOpen() ? closeMenu() : openMenu())
-
-
-    document.addEventListener("click", (e) => {
-        if (!isMenuOpen()) return;
-
-        const clickInsideNav = menu.contains(e.target);
-        const clickOnBurger = burger.contains(e.target);
-        if (!clickInsideNav && !clickOnBurger) {
-            closeMenu();
-        }
-
+    burger.addEventListener("click", (e) => {
+        e.stopPropagation()
+        toggleBurger()
     })
 
-    menu.addEventListener("click", (e) => {
-        const link = e.target.closest('a')
-        if (link || e.target === menu) {
-            closeMenu();
+    document.addEventListener("click", (e) => {
+        const isClickInsideMenu = menu.contains(e.target)
+        const isClickInsideBurger = burger.contains(e.target)
+        const isClickOnLink = e.target.closest(burgerConfig.MENU_LINK)
+
+        if (isClickOnLink && menu.contains(isClickOnLink)) {
+            closeBurgerMenu()
+            return
         }
+        if (!isClickInsideBurger && !isClickInsideMenu) {
+            closeBurgerMenu()
+        }
+    })
 
 
-    })};
+}
